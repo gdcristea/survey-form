@@ -1,0 +1,156 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    color: #fff;
+    margin: 0;
+  }
+  
+body {
+    background-image: url("https://cdn.freecodecamp.org/testable-projects-fcc/images/survey-form-background.jpeg"); /*inserting the background-image*/
+    background-repeat: no-repeat; /*don't repeat*/
+    background-position: center; /*position center, by default top left corner*/
+    background-size: cover; /*resize the image to cover the entire container*/
+    background-attachment: fixed; /*The background-attachment property sets whether a background image scrolls with the rest of the page, or is fixed.*/
+    font-size: 1.6rem;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /*overlay on the background*/
+  body::before {
+    /*::after works the same */
+    content: ""; /*it's required but don't want to add any content*/
+    position: fixed; /*relative to viewport, top left corner - here you can find a great article about overlays that helped me fixed the problem created by using absolute positioning: https://tympanus.net/codrops/2013/11/07/css-overlay-techniques/*/
+    height: 100%; /*giving a dimension to the pseudo-element in order to see it*/
+    width: 100%; /*giving a dimension to the pseudo-element in order to see it*/
+    top: 0; /*get rid of some white spaces around body*/
+    left: 0; /*get rid of some white spaces around body*/
+    z-index: -1; /* background-image goes behind our text*/
+    background-color: rgba(23, 18, 21, 0.88); /*now opacity affects only the pseudo-element and not the text within the page and this adds an overlay color*/
+  }
+  /* Header */
+  header {
+    text-align: center;
+    margin: 4rem 0 3rem;
+  }
+  
+  #title {
+    font-weight: 300;
+    margin-bottom: 0;
+    font-size: 3.6rem;
+  }
+  
+  #description {
+    font-style: italic;
+    font-weight: lighter;
+    font-size: 1.8rem;
+    margin-top: 1.5rem;
+  }
+  
+  /* Form */
+  #survey-form {
+    background-color: rgba(241, 228, 71, 0.8);
+    max-width: 60rem; /*need a certain width to center it*/
+    margin-right: auto; /*center the form on the page*/
+    margin-left: auto; /*center the form on the page*/
+    margin-bottom: 0;
+    border-radius: 0.5rem;
+    padding: 4rem 3rem;
+  }
+  
+  div {
+    margin: 0 auto 3rem;
+  }
+  
+  label {
+    margin-bottom: 1rem;
+    font-size: 2rem; /*same font as p below*/
+  }
+  
+  .flex {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .style-inputs,
+  select {
+    border-radius: 0.5rem;
+    padding: 0.7rem 0.8rem;
+    font-size: 1.6rem;
+    height: 3.5rem;
+    border: 0.2rem solid rgba(0, 22, 112, 0.8);
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /*CSS transitions allows you to change property values smoothly, over a given duration. - www.w3schools.com/css/css3_transitions.asp*/
+    /*the transitions will start when the specified css properties (in this case border-color, box-shadow) change their values - when? they will change their values when focusing on them - see code below*/
+  }
+  
+  .style-inputs:focus,
+  select:focus {
+    /*for me: the difference between ::before and :before - https://css-tricks.com/to-double-colon-or-not-do-double-colon/*/
+    border-color: #34ebe5;
+    outline-color: 0; /*An outline is a line that is drawn around elements, OUTSIDE the borders, to make the element "stand out". - www.w3schools.com/css/css_outline.asp*/
+    box-shadow: 0 0 0 0.2rem #34ebe5; /*The box-shadow property attaches one or more shadows to an element. - www.w3schools.com/cssref/css3_pr_box-shadow.asp*/
+  }
+  
+  .style-inputs::placeholder {
+    color: rgba(45, 41, 43, 0.9);
+  }
+  
+  select,
+  option {
+    width: 100%;
+    color: rgba(45, 41, 43, 0.9);
+  }
+  
+  p {
+    margin-bottom: 0.7rem;
+    margin-top: 0;
+    font-size: 2rem; /*same font as labels above*/
+  }
+  
+  span {
+    font-size: 75%;
+    margin-left: 0.3rem;
+  }
+  
+  .checkboxes {
+    line-height: 1.5;
+  }
+  
+  .input-checkbox,
+  .input-radio {
+    margin-right: 0.625rem;
+    min-height: 1.5rem;
+    min-width: 1.5rem;
+  }
+  
+  textarea {
+    /*issue I had: I keep getting extra white spaces within the textarea. When I clicked on it my cursor was like in the middle of the textarea and not at the beginning. What is the explanation?
+    Solution here - https://stackoverflow.com/questions/2202999/why-is-textarea-filled-with-mysterious-white-spaces
+    summary: In short: <textarea> should be closed immediately on the same line where it started.
+    */
+    width: 100%;
+    box-sizing: border-box; /*the issued I had here was that when I gave the textarea a width of 100% of its parent containter which is a div it overflowed  - that was because there was maybe some padding
+    so using boxder-box I specified that the entire element should have a width of 100% and not only the content of it - solution here: https://stackoverflow.com/questions/6035794/textarea-at-100-width-overflows-parent-container*/
+    resize: vertical; /*user isn't able to extend horizontally the width of the textarea - found the solution here - https://stackoverflow.com/questions/27939344/textarea-max-width/27939480*/
+    min-height: 10rem; /*i want textarea to hava a min height. also, the user is able to extend its height as i did not specify a max height*/
+    color: rgba(45, 41, 43, 0.9);
+  }
+  
+  button {
+    width: 100%;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 300;
+    color: #fff;
+    background-color: rgba(17, 187, 79, 0.8);
+    border: none;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    cursor: pointer; /*CSS cursor property - www.w3schools.com/cssref/pr_class_cursor.asp*/
+  }
+  
