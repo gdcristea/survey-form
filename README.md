@@ -19,9 +19,9 @@ View the optimal layout depending on their device's screen size
 
 ### Links
 
-- Solution URL: https://github.com/gdcristea/living-the-simple-life
+- Solution URL: https://github.com/gdcristea/survey-form
 
-- Live Site URL: https://gdcristea.github.io/living-the-simple-life/
+- Live Site URL: https://gdcristea.github.io/survey-form/
 
 ## Author
 
